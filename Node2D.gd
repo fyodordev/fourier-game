@@ -1,4 +1,6 @@
 extends Node2D
 
+export var speed = 1
+
 func _process(delta):
-	rotation += 1 * delta
+	rotation -= (speed - get_parent().speed) * delta
