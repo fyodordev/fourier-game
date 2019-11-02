@@ -20,6 +20,7 @@ func _ready():
 		#get the node we just attached, set speeds and lengths
 		currNode = currNode.get_node("./Stick+Junction")
 		currNode.hueinit(speeds[i],lengths[i])
-		
+	
+	currNode.get_node("Junction").get_node("CollisionShape2D").set_disabled(false)
 
 

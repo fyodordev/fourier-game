@@ -9,10 +9,8 @@ func hueinit(new_speed, new_length):
 	
 	#get position of parenths junktion
 	if(get_parent().name == "Stick+Junction"):
-		position[0] += get_parent().get_node("Junction").position[0]
-	else:
-		position[0] = get_parent().position[0]
-	
+		position[0] = get_parent().get_node("Junction").position[0]
+			
 	#set length
 	get_node("Stick").position[0] *= new_length
 	
