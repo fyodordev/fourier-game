@@ -7,7 +7,6 @@ onready var AnchorCam = get_node("/root/World/Anchor")
 func _process(delta):
     if is_current():
         var inpx = (int(Input.is_action_pressed("ui_cameraright")) - int(Input.is_action_pressed("ui_cameraleft")))
-        #position.x = lerp(position.x, position.x + inpx * speed, speed * delta)
         position.x = position.x + inpx * speed
         if position.x < 0:
             position.x = 0
