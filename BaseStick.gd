@@ -1,11 +1,11 @@
 extends Node2D
 
-export var speed = 1
+export var speed = 2
 
 #initialize with speed and length, set position of textures
 func hueinit(new_speed, new_length):
 	#speed is just speed
-	speed = new_speed
+	speed *= new_speed
 	
 	#get position of parenths junktion
 	if(get_parent().name == "Stick+Junction"):

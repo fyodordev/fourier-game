@@ -71,3 +71,5 @@ texture = ExtResource( 4 )
 
 [node name="Light2D" type="Light2D" parent="Junction"]
 texture = ExtResource( 5 )
+texture_scale = 15.0
+shadow_enabled = true

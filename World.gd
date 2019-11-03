@@ -23,5 +23,11 @@ func _ready():
 	var instancedTrail = trail.instance()
 	instancedTrail.targetPath = currNode.get_node("Junction").get_path()
 	currNode.add_child(instancedTrail)
+func _input(event):
+	if event.is_action_pressed("ui_cameraswap"):
+		if $"Level-Camera".is_current():
+			$"Anchor/Anchor-Camera".current=true
+		else:
+			$"Level-Camera".current=true
 
 

@@ -93,8 +93,8 @@ tracks/3/keys = {
 anims/NewFade = SubResource( 2 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
-margin_left = -1810.0
-margin_top = -1410.0
-margin_right = 25780.0
-margin_bottom = 1180.0
+margin_left = -2469.0
+margin_top = -3561.0
+margin_right = 25694.0
+margin_bottom = 4478.0
 color = Color( 0, 0, 0, 0 )
