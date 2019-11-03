@@ -84,7 +84,6 @@ texture_hover = ExtResource( 6 )
 expand = true
 
 [node name="Label" type="Label" parent="."]
-editor/display_folded = true
 margin_left = 576.0
 margin_top = 928.0
 margin_right = 1504.0
