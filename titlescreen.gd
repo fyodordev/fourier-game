@@ -26,14 +26,14 @@ func _physics_process(delta):
 	pass
 
 func _on_StartGameSprite_pressed():
-	var number_of_sticks=int(get_node("Label/number_sticks").text)
-	var sizes = []
-	var speeds =[]
-	for i in range(number_of_sticks):
+	global.number_of_sticks=int(get_node("Label/number_sticks").text)
+	global.lengths = []
+	global.speeds = []
+	for i in range(global.number_of_sticks):
 		i=i+1
-		sizes.append(int(get_node("Siz/Node2D%s/number_sticks"%i).text))
-		speeds.append(int(get_node("Vel/Node2D%s/number_sticks"%i).text))
-	print(sizes,speeds)
+		global.lengths.append(int(get_node("Siz/Node2D%s/number_sticks"%i).text))
+		global.speeds.append(int(get_node("Vel/Node2D%s/number_sticks"%i).text))
+
 	get_tree().change_scene("res://World.tscn")
 	
 

@@ -16,11 +16,11 @@ size = 120
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 3 )
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 resource_name = "New Anim"
 loop = true
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=3]
 resource_name = "grass"
 length = 0.8
 loop = true
@@ -37,7 +37,7 @@ tracks/0/keys = {
 "values": [ 2, 3, 1, 2 ]
 }
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=4]
 size = 77
 outline_color = Color( 0, 0, 0, 1 )
 font_data = ExtResource( 3 )
@@ -71,8 +71,8 @@ frame = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
 playback_speed = 1.5
-"anims/New Anim" = SubResource( 3 )
-anims/grass = SubResource( 4 )
+"anims/New Anim" = SubResource( 2 )
+anims/grass = SubResource( 3 )
 
 [node name="StartGameSprite" type="TextureButton" parent="."]
 margin_left = 512.0
@@ -89,7 +89,7 @@ margin_left = 576.0
 margin_top = 928.0
 margin_right = 1504.0
 margin_bottom = 977.002
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 4 )
 text = "Number of Sticks"
 align = 1
 
@@ -98,7 +98,7 @@ margin_left = 473.0
 margin_top = 155.0
 margin_right = 1209.0
 margin_bottom = 256.0
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 4 )
 text = "1
 "
 
@@ -134,7 +134,7 @@ margin_left = 953.352
 margin_top = 998.17
 margin_right = 1881.35
 margin_bottom = 1047.17
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 4 )
 text = "Velocities"
 align = 1
 __meta__ = {
@@ -169,7 +169,7 @@ margin_left = 953.352
 margin_top = 998.17
 margin_right = 1881.35
 margin_bottom = 1047.17
-custom_fonts/font = SubResource( 2 )
+custom_fonts/font = SubResource( 4 )
 text = "Sizes"
 align = 1
 
