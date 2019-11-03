@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://counter.gd" type="Script" id=1]
+[ext_resource path="res://8bit16.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://down.png" type="Texture" id=3]
+[ext_resource path="res://up.png" type="Texture" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 77
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 2 )
+
+[node name="Node2D" type="Control"]
+script = ExtResource( 1 )
+
+[node name="number_sticks" type="Label" parent="."]
+margin_left = 1042.35
+margin_top = 1121.34
+margin_right = 1778.35
+margin_bottom = 1222.34
+custom_fonts/font = SubResource( 1 )
+text = "1
+"
+
+[node name="number_down" type="TextureButton" parent="number_sticks"]
+margin_left = -89.0
+margin_top = 37.0
+margin_right = -49.0
+margin_bottom = 77.0
+mouse_filter = 1
+texture_normal = ExtResource( 3 )
+expand = true
+
+[node name="number_up" type="TextureButton" parent="number_sticks"]
+margin_left = -89.0
+margin_top = -27.0
+margin_right = -49.0
+margin_bottom = 13.0
+texture_normal = ExtResource( 4 )
+expand = true
+[connection signal="pressed" from="number_sticks/number_down" to="." method="_on_number_down_pressed"]
+[connection signal="pressed" from="number_sticks/number_up" to="." method="_on_number_up_pressed"]
