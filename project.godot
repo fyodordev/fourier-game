@@ -19,6 +19,10 @@ config/name="TestStuff"
 run/main_scene="res://titlescreen.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+global="*res://global.gd"
+
 [display]
 
 window/size/width=2000
