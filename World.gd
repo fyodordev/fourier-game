@@ -17,5 +17,11 @@ func _ready():
 		currNode.hueinit(global.speeds[i],global.lengths[i])
 	
 	currNode.get_node("Junction").get_node("CollisionShape2D").set_disabled(false)
+	
+	# Add trail which will trace the last object's movement.
+	var trail = load("Trail.tscn")
+	var instancedTrail = trail.instance()
+	instancedTrail.targetPath = currNode.get_node("Junction").get_path()
+	currNode.add_child(instancedTrail)
 
 
