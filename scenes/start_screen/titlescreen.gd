@@ -13,7 +13,6 @@ func _on_number_down_pressed():
 		get_node("Vel/Node2D%s"%get_node("Label/number_sticks").text).boool=false
 		get_node("Siz/Node2D%s"%get_node("Label/number_sticks").text).boool=false
 		get_node("Label/number_sticks").text=str(int(get_node("Label/number_sticks").text)-1)
-		global.number_of_sticks-=1
 	pass
 func _on_number_up_pressed():
 	print(int(get_node("Label/number_sticks").text))
@@ -21,23 +20,14 @@ func _on_number_up_pressed():
 		get_node("Label/number_sticks").text=str(int(get_node("Label/number_sticks").text)+1)
 		get_node("Vel/Node2D%s"%get_node("Label/number_sticks").text).boool=true
 		get_node("Siz/Node2D%s"%get_node("Label/number_sticks").text).boool=true
-		global.number_of_sticks+=1
-	print("YESS BABY")
-	pass
-func _ready():
-	for i in range(global.number_of_sticks):
-		get_node("Vel/Node2D%s"%(i+1)).boool=true
-		get_node("Siz/Node2D%s"%(i+1)).boool=true
-		get_node("Label/number_sticks").text=str(global.number_of_sticks)
-	for i in range(global.number_of_sticks):
-		get_node("Vel/Node2D%s/number_sticks"%(i+1)).text=str(global.speeds[i])
-		get_node("Siz/Node2D%s/number_sticks"%(i+1)).text=str(global.lengths[i])
 	pass
 	
 func _physics_process(delta):
-	get_node("Sprite/AnimationPlayer").play("grass")
 	#var placeholder="Node2D%s"
-	
+	get_node("Vel/Node2D1").boool=true
+	get_node("Siz/Node2D1").boool=true
+	get_node("Sprite/AnimationPlayer").play("grass")
+	pass
 
 func _on_StartGameSprite_pressed():
 	global.number_of_sticks=int(get_node("Label/number_sticks").text)
@@ -48,6 +38,6 @@ func _on_StartGameSprite_pressed():
 		global.lengths.append(int(get_node("Siz/Node2D%s/number_sticks"%i).text))
 		global.speeds.append(int(get_node("Vel/Node2D%s/number_sticks"%i).text))
 	#global.move=true
-	get_tree().change_scene("res://World.tscn")
+	get_tree().change_scene("res://scenes/main/World.tscn")
 	
 
