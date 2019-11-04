@@ -15,5 +15,5 @@ func _physics_process(delta):
 		var animP=get_tree().get_root().get_node("World/DeathFade/AnimationPlayer")
 		animP.play("NewFade")
 		yield(animP,"animation_finished")
-		get_tree().change_scene("titlescreen.tscn")
+		get_tree().change_scene("res://scenes/start_screen/titlescreen.tscn")
 		

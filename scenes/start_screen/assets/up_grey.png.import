@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Cable.png-46907320e3e86577747cf4adcc12d0dd.stex"
+path="res://.import/up_grey.png-df8c2f3363225a8e6cfc9a6467a16ae7.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Cable.png"
-dest_files=[ "res://.import/Cable.png-46907320e3e86577747cf4adcc12d0dd.stex" ]
+source_file="res://scenes/start_screen/assets/up_grey.png"
+dest_files=[ "res://.import/up_grey.png-df8c2f3363225a8e6cfc9a6467a16ae7.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

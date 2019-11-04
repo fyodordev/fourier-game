@@ -15,5 +15,5 @@ func _physics_process(delta):
 
 
 func _on_Finishline_body_entered(body):
-	get_tree().change_scene("res://titlescreen.tscn")
+	get_tree().change_scene("res://scenes/start_screen/titlescreen.tscn")
 	

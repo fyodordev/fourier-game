@@ -1,10 +1,16 @@
 [gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://BaseStick.gd" type="Script" id=1]
-[ext_resource path="res://Cable.png" type="Texture" id=2]
-[ext_resource path="res://Junction.gd" type="Script" id=3]
-[ext_resource path="res://Junction.png" type="Texture" id=4]
-[ext_resource path="res://spot.png" type="Texture" id=5]
+[ext_resource path="res://scenes/stick/BaseStick.gd" type="Script" id=1]
+[ext_resource path="res://scenes/stick/assets/Cable.png" type="Texture" id=2]
+[ext_resource path="res://scenes/stick/Junction.gd" type="Script" id=3]
+[ext_resource path="res://scenes/stick/assets/Junction.png" type="Texture" id=4]
+[ext_resource path="res://scenes/stick/assets/spot.png" type="Texture" id=5]
+
+
+
+
+
+
 
 [sub_resource type="Environment" id=1]
 background_mode = 4

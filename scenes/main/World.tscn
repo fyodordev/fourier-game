@@ -1,21 +1,21 @@
 [gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://World.gd" type="Script" id=1]
-[ext_resource path="res://Anchor.gd" type="Script" id=2]
-[ext_resource path="res://Anchor-Camera.gd" type="Script" id=3]
-[ext_resource path="res://cube.png" type="Texture" id=4]
-[ext_resource path="res://DeathFade.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Level-Camera.gd" type="Script" id=6]
+[ext_resource path="res://scenes/main/World.gd" type="Script" id=1]
+[ext_resource path="res://scenes/main/Anchor.gd" type="Script" id=2]
+[ext_resource path="res://scenes/main/Anchor-Camera.gd" type="Script" id=3]
+[ext_resource path="res://scenes/main/assets/cube.png" type="Texture" id=4]
+[ext_resource path="res://scenes/main/DeathFade.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/main/Level-Camera.gd" type="Script" id=6]
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=1]
 
-[sub_resource type="ConvexPolygonShape2D" id=1]
+[sub_resource type="ConvexPolygonShape2D" id=2]
 points = PoolVector2Array( 0, 0, 128, 0, 128, 128, 0, 128 )
 
-[sub_resource type="ConvexPolygonShape2D" id=4]
+[sub_resource type="ConvexPolygonShape2D" id=3]
 points = PoolVector2Array( 0, 0, 112, 0, 112, 113, 0, 113 )
 
-[sub_resource type="TileSet" id=2]
+[sub_resource type="TileSet" id=4]
 0/name = "cube.png 0"
 0/texture = ExtResource( 4 )
 0/tex_offset = Vector2( 0, 0 )
@@ -28,7 +28,7 @@ points = PoolVector2Array( 0, 0, 112, 0, 112, 113, 0, 113 )
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 1 ),
+"shape": SubResource( 2 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 0/z_index = 0
@@ -44,16 +44,16 @@ points = PoolVector2Array( 0, 0, 112, 0, 112, 113, 0, 113 )
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 4 ),
+"shape": SubResource( 3 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 1/z_index = 0
 
-[sub_resource type="OccluderPolygon2D" id=3]
+[sub_resource type="OccluderPolygon2D" id=5]
 closed = false
 polygon = PoolVector2Array( 458.671, 70.5187, 567.672, 74.0348, 567.672, 564.54, 456.913, 564.54 )
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 32.0061, 889.407 )
 
 [node name="World" type="Node"]
@@ -84,10 +84,10 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Anchor"]
-shape = SubResource( 6 )
+shape = SubResource( 1 )
 
 [node name="TileMap" type="TileMap" parent="."]
-tile_set = SubResource( 2 )
+tile_set = SubResource( 4 )
 collision_layer = 4
 collision_mask = 0
 format = 1
@@ -95,7 +95,7 @@ tile_data = PoolIntArray( -983056, 0, 0, -983055, 0, 0, -983054, 0, 0, -983053, 
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="TileMap"]
 visible = false
-occluder = SubResource( 3 )
+occluder = SubResource( 5 )
 
 [node name="DeathFade" parent="." instance=ExtResource( 5 )]
 
@@ -115,5 +115,5 @@ __meta__ = {
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Finishline"]
 position = Vector2( -3.60522, -3.6051 )
-shape = SubResource( 5 )
+shape = SubResource( 6 )
 [connection signal="body_entered" from="Finishline" to="Anchor" method="_on_Finishline_body_entered"]

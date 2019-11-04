@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://counter.gd" type="Script" id=1]
-[ext_resource path="res://8bit16.ttf" type="DynamicFontData" id=2]
-[ext_resource path="res://down.png" type="Texture" id=3]
-[ext_resource path="res://up.png" type="Texture" id=4]
+[ext_resource path="res://scenes/main/counter.gd" type="Script" id=1]
+[ext_resource path="res://shared/8bit16.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://scenes/start_screen/assets/down.png" type="Texture" id=3]
+[ext_resource path="res://scenes/start_screen/assets/up.png" type="Texture" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 77

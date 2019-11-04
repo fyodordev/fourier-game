@@ -6,7 +6,7 @@ func _ready():
 	var currNode = get_node("./Anchor")
 	for i in range(global.number_of_sticks):
 		#prepare stick
-		var scene = load("BaseStick.tscn")
+		var scene = load("res://scenes/stick/BaseStick.tscn")
 		var instancedScene = scene.instance()
 		
 		#attach new stick
@@ -19,7 +19,7 @@ func _ready():
 	currNode.get_node("Junction").get_node("CollisionShape2D").set_disabled(false)
 	
 	# Add trail which will trace the last object's movement.
-	var trail = load("Trail.tscn")
+	var trail = load("res://scenes/trail/Trail.tscn")
 	var instancedTrail = trail.instance()
 	instancedTrail.targetPath = currNode.get_node("Junction").get_path()
 	currNode.add_child(instancedTrail)

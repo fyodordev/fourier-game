@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/down_grey.png-bf2ea437756900ea53a2c4413adae182.stex"
+path="res://.import/Junction.png-b261a8c048c3ac8b6c6ce13f27f3494e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://down_grey.png"
-dest_files=[ "res://.import/down_grey.png-bf2ea437756900ea53a2c4413adae182.stex" ]
+source_file="res://scenes/stick/assets/Junction.png"
+dest_files=[ "res://.import/Junction.png-b261a8c048c3ac8b6c6ce13f27f3494e.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

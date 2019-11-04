@@ -15,13 +15,13 @@ _global_script_class_icons={
 
 [application]
 
-config/name="TestStuff"
-run/main_scene="res://titlescreen.tscn"
-config/icon="res://icon.png"
+config/name="FastAndFourier"
+run/main_scene="res://scenes/start_screen/titlescreen.tscn"
+config/icon="res://scenes/main/assets/icon.png"
 
 [autoload]
 
-global="*res://global.gd"
+global="*res://scenes/main/global.gd"
 
 [display]
 
@@ -76,4 +76,4 @@ ui_cameraleft={
 
 [rendering]
 
-environment/default_environment="res://default_env.tres"
+environment/default_environment="res://scenes/main/default_env.tres"

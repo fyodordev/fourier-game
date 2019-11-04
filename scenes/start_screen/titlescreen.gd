@@ -20,7 +20,6 @@ func _on_number_up_pressed():
 		get_node("Label/number_sticks").text=str(int(get_node("Label/number_sticks").text)+1)
 		get_node("Vel/Node2D%s"%get_node("Label/number_sticks").text).boool=true
 		get_node("Siz/Node2D%s"%get_node("Label/number_sticks").text).boool=true
-	print("YESS BABY")
 	pass
 	
 func _physics_process(delta):
@@ -39,6 +38,6 @@ func _on_StartGameSprite_pressed():
 		global.lengths.append(int(get_node("Siz/Node2D%s/number_sticks"%i).text))
 		global.speeds.append(int(get_node("Vel/Node2D%s/number_sticks"%i).text))
 	#global.move=true
-	get_tree().change_scene("res://World.tscn")
+	get_tree().change_scene("res://scenes/main/World.tscn")
 	
 

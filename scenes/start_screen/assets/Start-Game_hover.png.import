@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/down.png-cc614b252f16b05b3fda921affbe9569.stex"
+path="res://.import/Start-Game_hover.png-cb730a71ca0b5b39dbef9547c8fc17ed.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://down.png"
-dest_files=[ "res://.import/down.png-cc614b252f16b05b3fda921affbe9569.stex" ]
+source_file="res://scenes/start_screen/assets/Start-Game_hover.png"
+dest_files=[ "res://.import/Start-Game_hover.png-cb730a71ca0b5b39dbef9547c8fc17ed.stex" ]
 
 [params]
 
