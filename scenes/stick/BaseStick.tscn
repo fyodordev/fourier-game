@@ -6,12 +6,6 @@
 [ext_resource path="res://scenes/stick/assets/Junction.png" type="Texture" id=4]
 [ext_resource path="res://scenes/stick/assets/spot.png" type="Texture" id=5]
 
-
-
-
-
-
-
 [sub_resource type="Environment" id=1]
 background_mode = 4
 glow_enabled = true
@@ -26,7 +20,7 @@ extents = Vector2( 64, 16 )
 blend_mode = 1
 
 [sub_resource type="CircleShape2D" id=4]
-radius = 48.0
+radius = 17.7706
 
 [sub_resource type="CanvasItemMaterial" id=5]
 blend_mode = 1
@@ -61,9 +55,6 @@ position = Vector2( 128, 0 )
 collision_layer = 2
 collision_mask = 4
 script = ExtResource( 3 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Junction"]
 shape = SubResource( 4 )
