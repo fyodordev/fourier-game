@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://scenes/start_screen/titlescreen.gd" type="Script" id=1]
 [ext_resource path="res://scenes/start_screen/assets/start.png" type="Texture" id=2]
@@ -9,7 +9,9 @@
 [ext_resource path="res://scenes/start_screen/assets/down.png" type="Texture" id=7]
 [ext_resource path="res://scenes/start_screen/assets/up.png" type="Texture" id=8]
 [ext_resource path="res://scenes/main/counter.tscn" type="PackedScene" id=9]
-[ext_resource path="res://scenes/main/assets/Cloud.png" type="Texture" id=10]
+[ext_resource path="res://scenes/start_screen/assets/ui_down.wav" type="AudioStream" id=10]
+[ext_resource path="res://scenes/start_screen/assets/ui_up.wav" type="AudioStream" id=11]
+[ext_resource path="res://scenes/main/assets/Cloud.png" type="Texture" id=12]
 
 [sub_resource type="DynamicFont" id=1]
 size = 120
@@ -118,7 +120,6 @@ texture_normal = ExtResource( 8 )
 expand = true
 
 [node name="Vel" type="Control" parent="."]
-editor/display_folded = true
 margin_left = -384.0
 margin_top = 480.0
 margin_right = -344.0
@@ -186,6 +187,12 @@ margin_right = 256.0
 
 [node name="Node2D1" parent="Siz" instance=ExtResource( 9 )]
 
+[node name="ui_down_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+
+[node name="ui_up_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+
 [node name="Cloud" type="KinematicBody2D" parent="."]
 editor/display_folded = true
 visible = false
@@ -193,7 +200,7 @@ visible = false
 [node name="Sprite" type="Sprite" parent="Cloud"]
 position = Vector2( 3136, 704 )
 scale = Vector2( 16.5625, 16.0826 )
-texture = ExtResource( 10 )
+texture = ExtResource( 12 )
 [connection signal="pressed" from="StartGameSprite" to="." method="_on_StartGameSprite_pressed"]
 [connection signal="pressed" from="Label/number_sticks/number_down" to="." method="_on_number_down_pressed"]
 [connection signal="pressed" from="Label/number_sticks/number_up" to="." method="_on_number_up_pressed"]
