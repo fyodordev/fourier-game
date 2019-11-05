@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/stick/BaseStick.gd" type="Script" id=1]
 [ext_resource path="res://scenes/stick/assets/Cable.png" type="Texture" id=2]
 [ext_resource path="res://scenes/stick/Junction.gd" type="Script" id=3]
 [ext_resource path="res://scenes/stick/assets/Junction.png" type="Texture" id=4]
 [ext_resource path="res://scenes/stick/assets/spot.png" type="Texture" id=5]
+[ext_resource path="res://scenes/stick/explosion.tscn" type="PackedScene" id=6]
 
 [sub_resource type="Environment" id=1]
 background_mode = 4
@@ -70,3 +71,7 @@ texture = ExtResource( 4 )
 texture = ExtResource( 5 )
 texture_scale = 15.0
 shadow_enabled = true
+
+[node name="Explosion" parent="Junction" instance=ExtResource( 6 )]
+position = Vector2( -0.548027, 0.206825 )
+scale = Vector2( 1, 1 )

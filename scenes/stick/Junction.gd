@@ -12,6 +12,8 @@ func _ready():
 
 func _physics_process(delta):
 	if move_and_collide(velocity):
+		get_node("Junction_Sprite").set_texture(null) #after collision has been detected remove sprite of last junction
+		get_node("Explosion/Particles2D").emitting=true #initate "explosion" when collisoin has been detected
 		var animP=get_tree().get_root().get_node("World/DeathFade/AnimationPlayer")
 		animP.play("NewFade")
 		yield(animP,"animation_finished")
