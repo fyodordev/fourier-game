@@ -1,17 +1,18 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://scenes/start_screen/titlescreen.gd" type="Script" id=1]
 [ext_resource path="res://scenes/start_screen/assets/titlescreen.png" type="Texture" id=2]
 [ext_resource path="res://scenes/start_screen/assets/grass.png" type="Texture" id=3]
-[ext_resource path="res://shared/8bit16.ttf" type="DynamicFontData" id=4]
-[ext_resource path="res://scenes/start_screen/assets/Start-Game_hover.png" type="Texture" id=5]
-[ext_resource path="res://scenes/start_screen/assets/Start-Game.png" type="Texture" id=6]
+[ext_resource path="res://scenes/start_screen/assets/Start-Game_hover.png" type="Texture" id=4]
+[ext_resource path="res://scenes/start_screen/assets/Start-Game.png" type="Texture" id=5]
+[ext_resource path="res://shared/8bit16.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://scenes/start_screen/assets/down.png" type="Texture" id=7]
 [ext_resource path="res://scenes/start_screen/assets/up.png" type="Texture" id=8]
 [ext_resource path="res://scenes/main/counter.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/start_screen/assets/ui_down.wav" type="AudioStream" id=10]
 [ext_resource path="res://scenes/start_screen/assets/ui_up.wav" type="AudioStream" id=11]
-[ext_resource path="res://scenes/start_screen/assets/logo.png" type="Texture" id=12]
+[ext_resource path="res://scenes/start_screen/assets/star2.png" type="Texture" id=12]
+[ext_resource path="res://scenes/start_screen/assets/logo.png" type="Texture" id=13]
 
 [sub_resource type="Shader" id=1]
 code = "//Watershader from https://github.com/Gonkee/Gonkees-Shaders/blob/master/water.shader 
@@ -50,7 +51,7 @@ void fragment(){
 	vec2 distort1 = vec2(noise(noisecoord1 + motion1), noise(noisecoord2 + motion1)) - vec2(0.5);
 	//vec2 distort2 = vec2(noise(noisecoord1 + motion2), noise(noisecoord2 + motion2)) - vec2(0.5);
 	
-	vec2 distort_sum = ( distort1) / 100.0;
+	vec2 distort_sum = ( distort1) / 30.0;
 	
 	vec4 color = textureLod(SCREEN_TEXTURE, SCREEN_UV + distort_sum, 0.0);
 	color.rgb*=1.0;
@@ -60,15 +61,39 @@ void fragment(){
 [sub_resource type="ShaderMaterial" id=2]
 shader = SubResource( 1 )
 
-[sub_resource type="DynamicFont" id=3]
+[sub_resource type="Gradient" id=9]
+offsets = PoolRealArray( 0.540625, 1 )
+colors = PoolColorArray( 0.4, 0.427451, 0.482353, 0, 0.882353, 0.882353, 0.882353, 0 )
+
+[sub_resource type="GradientTexture" id=10]
+gradient = SubResource( 9 )
+
+[sub_resource type="AnimatedTexture" id=5]
+frames = 2
+fps = 2.0
+frame_0/texture = ExtResource( 4 )
+frame_1/texture = SubResource( 10 )
+frame_1/delay_sec = 0.0
+
+[sub_resource type="DynamicFont" id=6]
 size = 120
 outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 4 )
+font_data = ExtResource( 6 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=7]
 size = 77
 outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 4 )
+font_data = ExtResource( 6 )
+
+[sub_resource type="ParticlesMaterial" id=8]
+emission_shape = 2
+emission_box_extents = Vector3( 1000, 100, 1 )
+flag_disable_z = true
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 1.5
+scale_random = 1.0
 
 [node name="Node2D" type="Control"]
 script = ExtResource( 1 )
@@ -81,9 +106,18 @@ stretch_mode = 1
 
 [node name="WaterShader" type="Sprite" parent="."]
 material = SubResource( 2 )
-position = Vector2( 1019.92, 1689.18 )
-scale = Vector2( 54.1296, 41.7816 )
+position = Vector2( 1019.92, 1690.75 )
+scale = Vector2( 54.1296, 41.5856 )
 texture = ExtResource( 3 )
+
+[node name="StartGameSprite" type="TextureButton" parent="."]
+margin_left = 512.0
+margin_top = 1752.77
+margin_right = 1528.0
+margin_bottom = 1880.77
+texture_normal = SubResource( 5 )
+texture_hover = ExtResource( 5 )
+expand = true
 
 [node name="StartGame" type="Label" parent="."]
 visible = false
@@ -91,17 +125,8 @@ margin_left = 583.912
 margin_top = 1563.42
 margin_right = 1483.92
 margin_bottom = 1638.42
-custom_fonts/font = SubResource( 3 )
+custom_fonts/font = SubResource( 6 )
 text = "Start Game"
-
-[node name="StartGameSprite" type="TextureButton" parent="."]
-margin_left = 512.0
-margin_top = 1752.77
-margin_right = 1528.0
-margin_bottom = 1880.77
-texture_normal = ExtResource( 5 )
-texture_hover = ExtResource( 6 )
-expand = true
 
 [node name="Label" type="Label" parent="."]
 editor/display_folded = true
@@ -109,7 +134,7 @@ margin_left = 549.444
 margin_top = 662.438
 margin_right = 1477.44
 margin_bottom = 711.44
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 7 )
 text = "Number of Sticks"
 align = 1
 
@@ -118,7 +143,7 @@ margin_left = 473.0
 margin_top = 155.0
 margin_right = 1209.0
 margin_bottom = 256.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 7 )
 text = "1"
 
 [node name="number_down" type="TextureButton" parent="Label/number_sticks"]
@@ -153,7 +178,7 @@ margin_left = 953.352
 margin_top = 998.17
 margin_right = 1881.35
 margin_bottom = 1047.17
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 7 )
 text = "Velocities"
 align = 1
 __meta__ = {
@@ -189,7 +214,7 @@ margin_left = 953.352
 margin_top = 998.17
 margin_right = 1881.35
 margin_bottom = 1047.17
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 7 )
 text = "Sizes"
 align = 1
 
@@ -213,10 +238,17 @@ stream = ExtResource( 10 )
 [node name="ui_up_sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 11 )
 
+[node name="TwinklingStars" type="Particles2D" parent="."]
+position = Vector2( 1011.12, 228.954 )
+scale = Vector2( 3.01874, 2.30625 )
+amount = 1
+process_material = SubResource( 8 )
+texture = ExtResource( 12 )
+
 [node name="logo" type="Sprite" parent="."]
 position = Vector2( 1056.19, 804.922 )
 scale = Vector2( 5, 5 )
-texture = ExtResource( 12 )
+texture = ExtResource( 13 )
 [connection signal="pressed" from="StartGameSprite" to="." method="_on_StartGameSprite_pressed"]
 [connection signal="pressed" from="Label/number_sticks/number_down" to="." method="_on_number_down_pressed"]
 [connection signal="pressed" from="Label/number_sticks/number_up" to="." method="_on_number_up_pressed"]
