@@ -1,9 +1,9 @@
 [gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://scenes/start_screen/titlescreen.gd" type="Script" id=1]
-[ext_resource path="res://scenes/start_screen/assets/start.png" type="Texture" id=2]
-[ext_resource path="res://shared/8bit16.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://scenes/start_screen/assets/grass.png" type="Texture" id=4]
+[ext_resource path="res://scenes/start_screen/assets/titlescreen.png" type="Texture" id=2]
+[ext_resource path="res://scenes/start_screen/assets/grass.png" type="Texture" id=3]
+[ext_resource path="res://shared/8bit16.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://scenes/start_screen/assets/Start-Game_hover.png" type="Texture" id=5]
 [ext_resource path="res://scenes/start_screen/assets/Start-Game.png" type="Texture" id=6]
 [ext_resource path="res://scenes/start_screen/assets/down.png" type="Texture" id=7]
@@ -11,38 +11,64 @@
 [ext_resource path="res://scenes/main/counter.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/start_screen/assets/ui_down.wav" type="AudioStream" id=10]
 [ext_resource path="res://scenes/start_screen/assets/ui_up.wav" type="AudioStream" id=11]
-[ext_resource path="res://scenes/main/assets/Cloud.png" type="Texture" id=12]
+[ext_resource path="res://scenes/start_screen/assets/logo.png" type="Texture" id=12]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="Shader" id=1]
+code = "//Watershader from https://github.com/Gonkee/Gonkees-Shaders/blob/master/water.shader 
+
+shader_type canvas_item;
+
+float rand(vec2 coord){
+	return fract(sin(dot(coord, vec2(12.9898, 78.233)))* 43758.5453123);
+}
+
+float noise(vec2 coord){
+	vec2 i = floor(coord);
+	vec2 f = fract(coord);
+
+	// 4 corners of a rectangle surrounding our point
+	float a = rand(i);
+	float b = rand(i + vec2(1.0, 0.0));
+	float c = rand(i + vec2(0.0, 1.0));
+	float d = rand(i + vec2(1.0, 1.0));
+
+	vec2 cubic = f * f * (3.0 - 2.0 * f);
+
+	return mix(a, b, cubic.x) + (c - a) * cubic.y * (1.0 - cubic.x) + (d - b) * cubic.x * cubic.y;
+}
+
+void fragment(){
+	
+	vec2 noisecoord1 = UV*18.0;
+	vec2 noisecoord2 = UV*18.0+4.0;
+	//float mytime=floor(TIME*4.0); // In case you want to cut fps 
+	float mytime=TIME;
+	vec2 motion1 = vec2(mytime* 0.5, mytime* 0.5);
+	
+	//vec2 motion2 = vec2(TIME * 0.1, TIME * 0.5);
+	
+	vec2 distort1 = vec2(noise(noisecoord1 + motion1), noise(noisecoord2 + motion1)) - vec2(0.5);
+	//vec2 distort2 = vec2(noise(noisecoord1 + motion2), noise(noisecoord2 + motion2)) - vec2(0.5);
+	
+	vec2 distort_sum = ( distort1) / 100.0;
+	
+	vec4 color = textureLod(SCREEN_TEXTURE, SCREEN_UV + distort_sum, 0.0);
+	color.rgb*=1.0;
+	COLOR=color;
+	}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
 size = 120
 outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 3 )
-
-[sub_resource type="Animation" id=2]
-resource_name = "New Anim"
-loop = true
-
-[sub_resource type="Animation" id=3]
-resource_name = "grass"
-length = 0.8
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 0,
-"values": [ 2, 3, 1, 2 ]
-}
+font_data = ExtResource( 4 )
 
 [sub_resource type="DynamicFont" id=4]
 size = 77
 outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 3 )
+font_data = ExtResource( 4 )
 
 [node name="Node2D" type="Control"]
 script = ExtResource( 1 )
@@ -53,43 +79,36 @@ margin_bottom = 2016.0
 texture = ExtResource( 2 )
 stretch_mode = 1
 
+[node name="WaterShader" type="Sprite" parent="."]
+material = SubResource( 2 )
+position = Vector2( 1019.92, 1689.18 )
+scale = Vector2( 54.1296, 41.7816 )
+texture = ExtResource( 3 )
+
 [node name="StartGame" type="Label" parent="."]
 visible = false
 margin_left = 583.912
 margin_top = 1563.42
 margin_right = 1483.92
 margin_bottom = 1638.42
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 3 )
 text = "Start Game"
-
-[node name="Sprite" type="Sprite" parent="."]
-editor/display_folded = true
-position = Vector2( 1004.59, 1854.56 )
-rotation = -3.14159
-scale = Vector2( 211.207, -18.3199 )
-texture = ExtResource( 4 )
-hframes = 4
-frame = 2
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
-playback_speed = 1.5
-"anims/New Anim" = SubResource( 2 )
-anims/grass = SubResource( 3 )
 
 [node name="StartGameSprite" type="TextureButton" parent="."]
 margin_left = 512.0
-margin_top = 1792.0
+margin_top = 1752.77
 margin_right = 1528.0
-margin_bottom = 1920.0
+margin_bottom = 1880.77
 texture_normal = ExtResource( 5 )
 texture_hover = ExtResource( 6 )
 expand = true
 
 [node name="Label" type="Label" parent="."]
-margin_left = 576.0
-margin_top = 928.0
-margin_right = 1504.0
-margin_bottom = 977.002
+editor/display_folded = true
+margin_left = 549.444
+margin_top = 662.438
+margin_right = 1477.44
+margin_bottom = 711.44
 custom_fonts/font = SubResource( 4 )
 text = "Number of Sticks"
 align = 1
@@ -120,10 +139,11 @@ texture_normal = ExtResource( 8 )
 expand = true
 
 [node name="Vel" type="Control" parent="."]
-margin_left = -384.0
-margin_top = 480.0
-margin_right = -344.0
-margin_bottom = 520.0
+editor/display_folded = true
+margin_left = -380.205
+margin_top = 362.362
+margin_right = -340.205
+margin_bottom = 402.362
 __meta__ = {
 "_edit_group_": true
 }
@@ -156,10 +176,10 @@ margin_right = 256.0
 
 [node name="Siz" type="Control" parent="."]
 editor/display_folded = true
-margin_left = -384.0
-margin_top = 224.0
-margin_right = -344.0
-margin_bottom = 264.0
+margin_left = -395.384
+margin_top = 72.209
+margin_right = -355.384
+margin_bottom = 112.209
 __meta__ = {
 "_edit_group_": true
 }
@@ -193,13 +213,9 @@ stream = ExtResource( 10 )
 [node name="ui_up_sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 11 )
 
-[node name="Cloud" type="KinematicBody2D" parent="."]
-editor/display_folded = true
-visible = false
-
-[node name="Sprite" type="Sprite" parent="Cloud"]
-position = Vector2( 3136, 704 )
-scale = Vector2( 16.5625, 16.0826 )
+[node name="logo" type="Sprite" parent="."]
+position = Vector2( 1056.19, 804.922 )
+scale = Vector2( 5, 5 )
 texture = ExtResource( 12 )
 [connection signal="pressed" from="StartGameSprite" to="." method="_on_StartGameSprite_pressed"]
 [connection signal="pressed" from="Label/number_sticks/number_down" to="." method="_on_number_down_pressed"]

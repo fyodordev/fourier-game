@@ -41,7 +41,8 @@ func _ready():
 	pass
 	
 func _physics_process(delta):
-	get_node("Sprite/AnimationPlayer").play("grass")
+	pass
+	#get_node("Sprite/AnimationPlayer").play("grass")
 	#var placeholder="Node2D%s"
 	
 
