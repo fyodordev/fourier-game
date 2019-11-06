@@ -1,18 +1,19 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://scenes/start_screen/titlescreen.gd" type="Script" id=1]
 [ext_resource path="res://scenes/start_screen/assets/titlescreen.png" type="Texture" id=2]
 [ext_resource path="res://scenes/start_screen/assets/grass.png" type="Texture" id=3]
 [ext_resource path="res://scenes/start_screen/assets/Start-Game_hover.png" type="Texture" id=4]
-[ext_resource path="res://scenes/start_screen/assets/Start-Game.png" type="Texture" id=5]
-[ext_resource path="res://shared/8bit16.ttf" type="DynamicFontData" id=6]
-[ext_resource path="res://scenes/start_screen/assets/down.png" type="Texture" id=7]
-[ext_resource path="res://scenes/start_screen/assets/up.png" type="Texture" id=8]
-[ext_resource path="res://scenes/main/counter.tscn" type="PackedScene" id=9]
-[ext_resource path="res://scenes/start_screen/assets/ui_down.wav" type="AudioStream" id=10]
-[ext_resource path="res://scenes/start_screen/assets/ui_up.wav" type="AudioStream" id=11]
-[ext_resource path="res://scenes/start_screen/assets/star2.png" type="Texture" id=12]
-[ext_resource path="res://scenes/start_screen/assets/logo.png" type="Texture" id=13]
+[ext_resource path="res://scenes/start_screen/assets/empty.png" type="Texture" id=5]
+[ext_resource path="res://scenes/start_screen/assets/Start-Game.png" type="Texture" id=6]
+[ext_resource path="res://shared/8bit16.ttf" type="DynamicFontData" id=7]
+[ext_resource path="res://scenes/start_screen/assets/down.png" type="Texture" id=8]
+[ext_resource path="res://scenes/start_screen/assets/up.png" type="Texture" id=9]
+[ext_resource path="res://scenes/main/counter.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/start_screen/assets/ui_down.wav" type="AudioStream" id=11]
+[ext_resource path="res://scenes/start_screen/assets/ui_up.wav" type="AudioStream" id=12]
+[ext_resource path="res://scenes/start_screen/assets/star2.png" type="Texture" id=13]
+[ext_resource path="res://scenes/start_screen/assets/logo.png" type="Texture" id=14]
 
 [sub_resource type="Shader" id=1]
 code = "//Watershader from https://github.com/Gonkee/Gonkees-Shaders/blob/master/water.shader 
@@ -61,35 +62,30 @@ void fragment(){
 [sub_resource type="ShaderMaterial" id=2]
 shader = SubResource( 1 )
 
-[sub_resource type="Gradient" id=9]
-offsets = PoolRealArray( 0.540625, 1 )
-colors = PoolColorArray( 0.4, 0.427451, 0.482353, 0, 0.882353, 0.882353, 0.882353, 0 )
-
-[sub_resource type="GradientTexture" id=10]
-gradient = SubResource( 9 )
-
-[sub_resource type="AnimatedTexture" id=5]
+[sub_resource type="AnimatedTexture" id=3]
+flags = 4
 frames = 2
 fps = 2.0
 frame_0/texture = ExtResource( 4 )
-frame_1/texture = SubResource( 10 )
+frame_1/texture = ExtResource( 5 )
 frame_1/delay_sec = 0.0
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=4]
 size = 120
 outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 6 )
+font_data = ExtResource( 7 )
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="DynamicFont" id=5]
 size = 77
 outline_color = Color( 0, 0, 0, 1 )
-font_data = ExtResource( 6 )
+font_data = ExtResource( 7 )
 
-[sub_resource type="ParticlesMaterial" id=8]
+[sub_resource type="ParticlesMaterial" id=6]
 emission_shape = 2
 emission_box_extents = Vector3( 1000, 100, 1 )
 flag_disable_z = true
 gravity = Vector3( 0, 0, 0 )
+angular_velocity = 1.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 1.5
@@ -115,8 +111,8 @@ margin_left = 512.0
 margin_top = 1752.77
 margin_right = 1528.0
 margin_bottom = 1880.77
-texture_normal = SubResource( 5 )
-texture_hover = ExtResource( 5 )
+texture_normal = SubResource( 3 )
+texture_hover = ExtResource( 6 )
 expand = true
 
 [node name="StartGame" type="Label" parent="."]
@@ -125,7 +121,7 @@ margin_left = 583.912
 margin_top = 1563.42
 margin_right = 1483.92
 margin_bottom = 1638.42
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 4 )
 text = "Start Game"
 
 [node name="Label" type="Label" parent="."]
@@ -134,7 +130,7 @@ margin_left = 549.444
 margin_top = 662.438
 margin_right = 1477.44
 margin_bottom = 711.44
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 5 )
 text = "Number of Sticks"
 align = 1
 
@@ -143,7 +139,7 @@ margin_left = 473.0
 margin_top = 155.0
 margin_right = 1209.0
 margin_bottom = 256.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 5 )
 text = "1"
 
 [node name="number_down" type="TextureButton" parent="Label/number_sticks"]
@@ -152,7 +148,7 @@ margin_top = 37.0
 margin_right = -49.0
 margin_bottom = 77.0
 mouse_filter = 1
-texture_normal = ExtResource( 7 )
+texture_normal = ExtResource( 8 )
 expand = true
 
 [node name="number_up" type="TextureButton" parent="Label/number_sticks"]
@@ -160,7 +156,7 @@ margin_left = -89.0
 margin_top = -27.0
 margin_right = -49.0
 margin_bottom = 13.0
-texture_normal = ExtResource( 8 )
+texture_normal = ExtResource( 9 )
 expand = true
 
 [node name="Vel" type="Control" parent="."]
@@ -178,26 +174,26 @@ margin_left = 953.352
 margin_top = 998.17
 margin_right = 1881.35
 margin_bottom = 1047.17
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 5 )
 text = "Velocities"
 align = 1
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Node2D4" parent="Vel" instance=ExtResource( 9 )]
+[node name="Node2D4" parent="Vel" instance=ExtResource( 10 )]
 margin_left = 768.0
 margin_right = 768.0
 
-[node name="Node2D3" parent="Vel" instance=ExtResource( 9 )]
+[node name="Node2D3" parent="Vel" instance=ExtResource( 10 )]
 margin_left = 512.0
 margin_right = 512.0
 
-[node name="Node2D2" parent="Vel" instance=ExtResource( 9 )]
+[node name="Node2D2" parent="Vel" instance=ExtResource( 10 )]
 margin_left = 256.0
 margin_right = 256.0
 
-[node name="Node2D1" parent="Vel" instance=ExtResource( 9 )]
+[node name="Node2D1" parent="Vel" instance=ExtResource( 10 )]
 
 [node name="Siz" type="Control" parent="."]
 editor/display_folded = true
@@ -214,41 +210,41 @@ margin_left = 953.352
 margin_top = 998.17
 margin_right = 1881.35
 margin_bottom = 1047.17
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 5 )
 text = "Sizes"
 align = 1
 
-[node name="Node2D4" parent="Siz" instance=ExtResource( 9 )]
+[node name="Node2D4" parent="Siz" instance=ExtResource( 10 )]
 margin_left = 768.0
 margin_right = 768.0
 
-[node name="Node2D3" parent="Siz" instance=ExtResource( 9 )]
+[node name="Node2D3" parent="Siz" instance=ExtResource( 10 )]
 margin_left = 512.0
 margin_right = 512.0
 
-[node name="Node2D2" parent="Siz" instance=ExtResource( 9 )]
+[node name="Node2D2" parent="Siz" instance=ExtResource( 10 )]
 margin_left = 256.0
 margin_right = 256.0
 
-[node name="Node2D1" parent="Siz" instance=ExtResource( 9 )]
+[node name="Node2D1" parent="Siz" instance=ExtResource( 10 )]
 
 [node name="ui_down_sound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 10 )
+stream = ExtResource( 11 )
 
 [node name="ui_up_sound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 11 )
+stream = ExtResource( 12 )
 
 [node name="TwinklingStars" type="Particles2D" parent="."]
 position = Vector2( 1011.12, 228.954 )
 scale = Vector2( 3.01874, 2.30625 )
 amount = 1
-process_material = SubResource( 8 )
-texture = ExtResource( 12 )
+process_material = SubResource( 6 )
+texture = ExtResource( 13 )
 
 [node name="logo" type="Sprite" parent="."]
 position = Vector2( 1056.19, 804.922 )
 scale = Vector2( 5, 5 )
-texture = ExtResource( 13 )
+texture = ExtResource( 14 )
 [connection signal="pressed" from="StartGameSprite" to="." method="_on_StartGameSprite_pressed"]
 [connection signal="pressed" from="Label/number_sticks/number_down" to="." method="_on_number_down_pressed"]
 [connection signal="pressed" from="Label/number_sticks/number_up" to="." method="_on_number_up_pressed"]
